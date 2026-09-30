@@ -1,0 +1,45 @@
+name: Refresh Loon directory and deploy
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */3 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'styles.css'
+      - 'app.js'
+      - 'build_index.py'
+      - '.github/workflows/site.yml'
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch Romeo Git history
+        run: git clone --filter=blob:none --no-checkout https://github.com/ifflagged/Romeo.git romeo-history
+      - name: Build matching module index
+        run: python build_index.py --repo romeo-history --out .
+      - name: Prepare Pages files
+        run: |
+          mkdir -p public
+          cp index.html styles.css app.js data.js public/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deployment
+        uses: actions/deploy-pages@v4

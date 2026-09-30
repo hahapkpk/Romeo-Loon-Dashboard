@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <title>Loon 模块雷达 · Romeo</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brandmark">L<span class="branddot">·</span></span><div><strong>模块雷达</strong><small>ROMEO / LOON</small></div></div>
+      <a class="source-link" href="https://github.com/ifflagged/Romeo/tree/main/Modules/Loon" target="_blank" rel="noopener noreferrer">查看源仓库 ↗</a>
+    </header>
+    <main>
+      <div class="heading">
+        <div><p class="eyebrow"><span class="live-dot"></span> LOON MODULE DIRECTORY</p><h1>找到想用的模块<span>，</span><br>直接复制链接。</h1><p class="intro">按软件浏览各作者的 Loon 模块。日期为 Romeo 仓库中该文件的最近提交时间，并非原作者发布时间。</p></div>
+        <div class="summary"><span>已收录</span><strong id="module-count">—</strong><span>个可导入模块</span><div class="summary-rule"></div><small id="sync-time">读取索引中…</small></div>
+      </div>
+      <section class="workspace" aria-label="模块列表">
+        <div class="toolbar">
+          <label class="searchbox"><span class="search-icon" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索软件、模块或作者，例如 Spotify / 哔哩哔哩" autocomplete="off" aria-label="搜索软件、模块或作者"><kbd>/</kbd></label>
+          <div class="controls"><div class="tabs" role="group" aria-label="筛选"><button type="button" class="tab selected" data-filter="all" aria-pressed="true">全部</button><button type="button" class="tab" data-filter="favorites" aria-pressed="false">我的关注 <span id="fav-count">0</span></button></div><select id="sort" aria-label="排序方式"><option value="updated">最近更新</option><option value="name">名称 A–Z</option></select></div>
+        </div>
+        <div class="list-head"><span id="result-count">加载中…</span><span>点击软件展开所有作者和版本</span></div>
+        <div id="results" class="results" aria-live="polite"></div>
+        <div class="load-wrap"><button id="load-more" class="load-more" type="button" hidden>显示更多软件 ↓</button></div>
+      </section>
+    </main>
+    <footer><span>数据来自 ifflagged/Romeo · 文件可能由镜像同步更新</span><span>复制的是模块 Raw URL，不是 JS 脚本地址</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
