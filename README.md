@@ -1,5 +1,7 @@
 # Romeo · Loon 模块雷达
 
+在线页面：`https://hahapkpk.github.io/Romeo-Loon-Dashboard/`
+
 一个无需后端的 Loon 模块搜索页：按软件名称汇总 Romeo 仓库内的 `.lpx`／`.plugin`，显示 Romeo 文件的最近提交日期，复制可直接导入 Loon 的 Raw URL。
 
 ## 立即使用
@@ -12,13 +14,11 @@
 - 本工具不判断模块的安全性或实际可用性；导入前请检查对应源码及作者说明。
 - 英文转中文使用 `build_index.py` 中的 `ALIASES` 映射，已是中文的 `#!name` 保留原样；未确认中文名的不自动臆译。
 
-## 部署成会自动更新的网页
+## 在线更新与手动运行
 
-1. 把整个项目上传到**你自己的 GitHub 仓库**，默认分支命名为 `main`。
-2. 在该仓库 Settings → Pages → Build and deployment → Source 中选择 **GitHub Actions**。
-3. 在 Actions 中手动运行 `Refresh Loon directory and deploy`，成功后从 Pages 设置查看网站地址。之后 workflow 每 3 小时（UTC 00:17、03:17 等）尝试刷新一次，也可以随时从 Actions 手动运行。GitHub 的 scheduled workflows 可能延迟或被平台暂停，可手动触发。
+此仓库的 `.github/workflows/site.yml` 已配置 GitHub Pages：每 3 小时（UTC 00:17、03:17 等）尝试更新索引。需要手动刷新时，打开仓库的 **Actions → Refresh Loon directory and deploy → Run workflow → Run workflow**。GitHub 的 scheduled workflows 可能延迟或被平台暂停，必要时可手动触发。
 
-上传项目并不修改 ifflagged/Romeo 仓库；自动部署需要你自己的 GitHub 仓库。离线双击打开的是生成时的快照，不会自行更新。网站在线时会随着自己的 Actions 成功部署更新，不是每次打开网页实时抓取。
+站点只在 Actions 成功部署后更新，不是每次打开网页都实时抓取；本地双击打开的是生成时的快照。此项目不修改 ifflagged/Romeo 仓库。
 
 ## 本地刷新索引
 
